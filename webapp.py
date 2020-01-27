@@ -14,12 +14,13 @@ app.secret_key=os.environ["SECRET_KEY"]; #SECRET_KEY is an environment variable.
 
 @app.route('/')
 def renderMain():
+   
     return render_template('home.html')
 
 @app.route('/startOver')
 def startOver():
     #TODO: delete everything from the session
-    
+    session.clear() #clears variables values and creates a new session
     return redirect('/')
 
 @app.route('/page1')
@@ -29,13 +30,13 @@ def renderPage1():
 @app.route('/page2',methods=['GET','POST'])
 def renderPage2():
     #TODO: save the first and last name in the session
-    
+    session["firstName"]=request.form['firstName]
     return render_template('page2.html')
 
 @app.route('/page3',methods=['GET','POST'])
 def renderPage3():
     #TODO: save the favorite color in the session
-    
+    session["favoriteColor"]=request.form['favoriteColor']
     return render_template('page3.html')
     
 if __name__=="__main__":
